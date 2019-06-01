@@ -111,13 +111,13 @@ router.post("/forgot", function(req, res, next) {
 				var smtpTransport = nodemailer.createTransport({
 					service: "Yandex",
 					auth: {
-						user: "michaelvillem@yandex.com",
+						user: process.env.YANDEXEMAIL,
 						pass: process.env.YANDEXPW
 					}
 				});
 				var mailOptions = {
 					to: user.email,
-					from: "michaelvillem@yandex.com",
+					from: process.env.YANDEXEMAIL,
 					subject: "YelpCamp Password Reset",
 					text:
 						"You are receiving this because you (or someone else) have requested the reset of the password\n" +
@@ -188,13 +188,13 @@ router.post("/reset/:token", function(req, res) {
 				var smtpTransport = nodemailer.createTransport({
 					service: "Yandex",
 					auth: {
-						user: "michaelvillem@yandex.com",
+						user: process.env.YANDEXEMAIL,
 						pass: process.env.YANDEXPW
 					}
 				});
 				var mailOptions = {
 					to: user.email,
-					from: "michaelvillem@yandex.com",
+					from: process.env.YANDEXEMAIL,
 					subject: "Your password has been changed",
 					text:
 						"Hello,\n\n" +

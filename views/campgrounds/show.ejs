@@ -14,16 +14,17 @@
         <div class="card">
             <img src="<%=campground.image%>" class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 class="card-title d-inline-block" id="campground-name"><%=campground.name%></h5>
-            <h5 class="float-right">$<%=campground.price%>/night</h5>
-            <p class="card-text"><%=campground.description%></p>
-            <p><em>Submitted By <a href="/users/<%=campground.author.id%>"><%=campground.author.username%></a>, <%=moment(campground.createdAt).fromNow()%></em></p>
-            <% if ((currentUser && campground.author.id.equals(currentUser._id))||(currentUser && currentUser.isAdmin)){ %>
+                <h5 class="card-title d-inline-block" id="campground-name"><%=campground.name%></h5>
+                <h5 class="float-right">$<%=campground.price%>/night</h5>
+                <p class="card-text"><%=campground.description%></p>
+                <p><em>Submitted By <a href="/users/<%=campground.author.id%>"><%=campground.author.username%></a>,
+                        <%=moment(campground.createdAt).fromNow()%></em></p>
+                <% if ((currentUser && campground.author.id.equals(currentUser._id))||(currentUser && currentUser.isAdmin)){ %>
                 <a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-sm btn-warning">Edit</a>
                 <form class="d-inline" action="/campgrounds/<%=campground._id%>/?_method=DELETE" method="post">
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                 </form>
-            <% } %>
+                <% } %>
             </div>
         </div>
         <!--Review Section-->
@@ -46,7 +47,9 @@
                 <p>
                     Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
                 </p>
-                <p><h4>Latest reviews for this campground:</h4></p>
+                <p>
+                    <h4>Latest reviews for this campground:</h4>
+                </p>
                 <hr style="margin-top: 0;">
                 <% campground.reviews.slice(0, 5).forEach(function(review){ %>
                 <div class="row">
@@ -61,8 +64,10 @@
                         </p>
                         <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
                         <a class="btn btn-xs btn-warning"
-                           href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a>
-                        <form id="delete-form" action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
+                            href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a>
+                        <form id="delete-form"
+                            action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE"
+                            method="POST">
                             <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                         </form>
                         <% } %>
@@ -71,11 +76,13 @@
                 <hr>
                 <% }); %>
                 <div style="margin-bottom: 10px;">
-                    <h4><a href="/campgrounds/<%= campground._id %>/reviews"><i class="fa fa-search" aria-hidden="true"></i> See all reviews</a></h4>
+                    <h4><a href="/campgrounds/<%= campground._id %>/reviews"><i class="fa fa-search"
+                                aria-hidden="true"></i> See all reviews</a></h4>
                 </div>
                 <% } %>
                 <div>
-                    <a class="btn btn-primary btn-lg <% if (currentUser && campground.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled <% } %>" href="/campgrounds/<%= campground._id %>/reviews/new">
+                    <a class="btn btn-primary btn-lg <% if (currentUser && campground.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled <% } %>"
+                        href="/campgrounds/<%= campground._id %>/reviews/new">
                         Write a New Review</a>
                 </div>
             </div>
@@ -83,19 +90,24 @@
 
         <!--Comment Section-->
         <div class="card bg-light mt-2">
-            <div class="card-body"><a class="btn btn-success float-right" href="/campgrounds/<%=campground._id%>/comments/new">Add New Comment</a></div>
-            <div class="card">            
+            <div class="card-body"><a class="btn btn-success float-right"
+                    href="/campgrounds/<%=campground._id%>/comments/new">Add New Comment</a></div>
+            <div class="card">
                 <% campground.comments.forEach(function(comment){ %>
-                    <div class="card-body">
-                        <h6 class="card-title"><%=comment.author.username%><span class="float-right" id="creation-time"><%=moment(comment.createdAt).fromNow()%></span></h6> 
-                        <p class="card-text"><%=comment.text%></p>
-                        <% if ((currentUser && comment.author.id.equals(currentUser._id))|| (currentUser && currentUser.isAdmin)){ %>
-                            <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-sm btn-warning">Edit</a>
-                            <form class="d-inline" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        <% } %>
-                    </div>
+                <div class="card-body">
+                    <h6 class="card-title"><%=comment.author.username%><span class="float-right"
+                            id="creation-time"><%=moment(comment.createdAt).fromNow()%></span></h6>
+                    <p class="card-text"><%=comment.text%></p>
+                    <% if ((currentUser && comment.author.id.equals(currentUser._id))|| (currentUser && currentUser.isAdmin)){ %>
+                    <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit"
+                        class="btn btn-sm btn-warning">Edit</a>
+                    <form class="d-inline"
+                        action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE"
+                        method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
                 <% }); %>
             </div>
         </div>
@@ -104,31 +116,34 @@
 
 <script>
     function initMap() {
-      var lat = <%= campground.lat %>;
-      var lng = <%= campground.lng %>;
-      var center = {lat: lat, lng: lng };
-      var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: center,
-          scrollwheel: false
-      });
-      var contentString = `
+        var lat = < %= campground.lat % > ;
+        var lng = < %= campground.lng % > ;
+        var center = {
+            lat: lat,
+            lng: lng
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: center,
+            scrollwheel: false
+        });
+        var contentString = `
         <strong><%= campground.name %><br />
         <%= campground.location %></strong>
         <p><%= campground.description %></p>
       `
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-      var marker = new google.maps.Marker({
-          position: center,
-          map: map
-      });
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        var marker = new google.maps.Marker({
+            position: center,
+            map: map
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
     }
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJAdm6zkwKMbXb4qthLLjpdh6MuGh5itI&callback=initMap"></script>
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"></script>
 
 <% include ../partials/footer-not-fixed %>
