@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="">
+  <title>YelpCamp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand navbar-light bg-light mb-3">
+    <a class="navbar-brand" href="/">YelpCamp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>">
+          <a class="nav-link" href="/campgrounds">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Link</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <% if (!currentUser){ %>
+        <a class="btn btn-outline-success my-2 my-sm-0 <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"
+          href="/login">Login</a>
+        <a class="btn btn-outline-success my-2 my-sm-0 ml-2 <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>"
+          href="/register">Sign Up</a>
+        <% } else { %>
+        <span class="pr-2">Signed In As <%=currentUser.username%></span>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Logout</a>
+        <% } %>
+      </form>
+    </div>
+  </nav>
+  <% if(error && error.length>0) { %>
+  <div class="container">
+    <div class="alert alert-danger" role="alert"><%=error%></div>
+  </div>
+  <%}%>
+        <% if(success && success.length>0) { %>
+  <div class="container">
+    <div class="alert alert-success" role="alert"><%=success%></div>
+  </div>
+  <%}%>
+        <div class="container">        
+      

@@ -1,0 +1,37 @@
+.card-img-top.index {
+	height: 15rem;
+}
+.btn-warning {
+	color: white;
+}
+
+#map {
+	height: 400px;
+	width: 100%;
+}
+#creation-time {
+	font-weight: normal;
+	font-size: 75%;
+}
+
+/* for reviews section */
+
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+.thumbnail .caption-full {
+	padding: 9px;
+}
+
+#delete-form {
+	display: inline;
+}
+
+.checked {
+	color: orange;
+}
