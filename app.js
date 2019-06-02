@@ -20,7 +20,10 @@ var commentRoutes = require("./routes/comments"),
 	reviewRoutes = require("./routes/reviews");
 
 //seedDB();
-mongoose.connect("mongodb://127.0.0.1:27017/yelp_camp_16", { useNewUrlParser: true });
+
+var url = process.env.DATABASEURL || process.env.LOCALDATABASEURL;
+
+mongoose.connect(url, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
