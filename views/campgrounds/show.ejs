@@ -115,9 +115,9 @@
 </div>
 
 <script>
-    function initMap = {
-        var lat = < %= campground.lat % > ;
-        var lng = < %= campground.lng % > ;
+    function initMap() {
+        var lat = <%= campground.lat %>;
+        var lng = <%= campground.lng %>;
         var center = {
             lat: lat,
             lng: lng
@@ -144,7 +144,6 @@
         });
     }
 </script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJzqAO3xUlCfi3wvclY6n35250eug8fo&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJzqAO3xUlCfi3wvclY6n35250eug8fo&callback=initMap" async defer></script>
 
 <% include ../partials/footer-not-fixed %>
