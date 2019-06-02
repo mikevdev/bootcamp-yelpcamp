@@ -34,7 +34,7 @@ app.locals.moment = require("moment");
 
 app.use(
 	require("express-session")({
-		secret: "Once again Rusty wins cutest dog!",
+		secret: process.env.COOKIESECRET,
 		resave: false,
 		saveUninitialized: false
 	})
